@@ -35,26 +35,5 @@ public class TestingArea {
         }
         System.out.println(passGuess);
         System.out.println(new StringBuilder().append("I guess your password is: ").append(passGuess).toString());
-
-        //Creating brute force
-//        char[] passwordGuess = new char[64];
-//        boolean cracked = true;
-//        while(cracked) {
-//            for (int i = 0; i < AmazingEncryptor.toHexString(AmazingEncryptor.getSHA(passString)).length(); i++) {
-//                int randomInt = random.nextInt(charList.size());
-//                passwordGuess[i] = charList.get(randomInt);
-//            }
-//            System.out.println("Guess: "+new String(passwordGuess));
-//            if (AmazingEncryptor.toHexString(AmazingEncryptor.getSHA(passString)).equals(new String(passwordGuess))){
-//                cracked = false;
-//                System.out.println("Your password: "+AmazingEncryptor.toHexString(AmazingEncryptor.getSHA(passString)));
-//                System.out.println("Password found: " + new String(passwordGuess));
-//            }else{
-//                cracked = true;
-//            }
-//        }
-
-        // library to calculate time
-        // brute force attack sha256
     }
 }

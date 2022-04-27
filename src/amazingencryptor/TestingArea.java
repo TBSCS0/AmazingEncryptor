@@ -9,33 +9,29 @@ public class TestingArea {
         Scanner scanner = new Scanner(System.in);
 
         //Creation of Ascii Characters Array:
-        String charString = new String(IntStream.rangeClosed(32, 126).toArray(), 0, 95);
-        char[] ascii = charString.toCharArray();
+        String asciiCodes = new String(IntStream.rangeClosed(32, 126).toArray(), 0, 95);
+        char[] asciiCharacters = asciiCodes.toCharArray();
 
         //Inputting string:
-        System.out.println("Enter you password below:");
-        String passString = scanner.nextLine();
+        System.out.println("Enter a 8 digit password below:");
+        String password = scanner.nextLine();
 
         //Creating brute force:
-        char[] passGuess = new char[passString.length()];
-        char[] passChar = passString.toCharArray();
+        //char[] passGuess = new char[password.length()];
+        //char[] passChar = password.toCharArray();
+
+        char[] pswTry = new char[8];
         long startTime = System.nanoTime();
-        for (int i = 0; i < passString.length(); i++) {
-            System.out.println(passGuess);
-            for (int j = 0; j < ascii.length; j++) {
-                if (passChar[i] == ascii[j]) {
-                    passGuess[i] = passChar[i];
-                    j = ascii.length;
-                }
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < asciiCharacters.length; j++) {
+                pswTry[i] = asciiCharacters[j];
             }
         }
         long endTime = System.nanoTime() - startTime;
 
-        System.out.println("I guess your password is: " + String.valueOf(passGuess));
+        //System.out.println("I guess your password is: " + String.valueOf(passGuess));
         double convertion = (double) endTime/1_000_000_000;
         System.out.println("And it took this much time: " + convertion + "s");
         System.out.println("And it took this much time: " + TimeUnit.MICROSECONDS.convert(endTime, TimeUnit.NANOSECONDS) + " Microseconds");
-
-
     }
 }

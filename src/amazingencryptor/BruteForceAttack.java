@@ -4,8 +4,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
-public class Factorial {
+public class BruteForceAttack {
     public static void main(String[] args) {
+
         //Inputing password to be h@ck3d!
         System.out.println("Enter a password below:");
         Scanner scanner = new Scanner(System.in);
@@ -41,13 +42,13 @@ public class Factorial {
         because the library "char" that stands out for "characters", already knows the code for each character in the ascii table. Hence, automatically translating it.
          */
 
-        System.out.println(asciiCharacters);
+        //System.out.println(asciiCharacters);
         System.out.println("checking.... please wait!");
 
         //Recursion method for "hacking" the password entered by the user
         double startTime = System.nanoTime();
         System.out.println("It is: " + Arrays.toString(
-                decoder(pswFound, passwordCharacters, asciiCharacters, 0)) + ". Isn't it?");
+                bruteForce(pswFound, passwordCharacters, asciiCharacters, 0)) + ". Isn't it?");
         double endTime = System.nanoTime() - startTime;
         /* note!
         The variables "startTime" and "endTime" are used to gather the time taken to the program to process the "hacking", and this time will be measured by nanoseconds. For this
@@ -55,24 +56,41 @@ public class Factorial {
 
         1 nanosecond = 0.000000001 seconds or 1E-8 seconds
          */
+
         System.out.println("You dumb dumb, your password is weak!");
         System.out.println("It took " + endTime/1_000_000_000 + "seconds");
     }
-    public static char[] decoder(char[] pswFound, char[] password, char[] asciiCharacters, int index){
+
+    public static char[] bruteForce(char[] pswFound, char[] password, char[] asciiCharacters, int index){
+
         //Creating brute force
         for (int i = index; i < pswFound.length; i++) {
+
             for (int j = 0; j < asciiCharacters.length; j++) {
+
                 if(!Arrays.equals(pswFound,password)){
-                    //System.out.println(pswFound);
+                    /* note!
+                    It needs to check if the password DOESN'T match, because if you check If it matches and invert
+                    this If parameters, the password will pass through the program, and it will not acknowledge it. Making the loop go through all characters
+                    from our asciiCharacters list, and eventually giving a answer that will only have ) or ~, that is the last character from our ascii Table
+                     */
                     pswFound[i] = asciiCharacters[j];
-                    decoder(pswFound, password, asciiCharacters, index+1);
-                }else if(Arrays.equals(pswFound,password)){
+                    bruteForce(pswFound, password, asciiCharacters, index+1);
+                    /* note!
+                    (as sir to help explain the recursion above :< )
+                    Also, we will need to use recursion for this simulation because of the limitations of interactive methods. Mainly because when you try to
+                    break an 8 digit password, for example, you will need to create 8 for loops for each character. This problem scales even more when you try
+                    to break a Hash of a password that has 64 characters. As now, you would need 64 interaction structures to find the combination of the Hash.
+                     */
+
+                }else{
                     i = pswFound.length;
                     j = 95;
                 }
             }
         }
-        return pswFound;
-    }
 
+        return pswFound;
+
+    }
 }

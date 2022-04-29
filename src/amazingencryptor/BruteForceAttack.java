@@ -75,7 +75,7 @@ public class BruteForceAttack {
                     /* note!
                     It needs to check if the password DOESN'T match, because if you check If it matches and invert this If parameters, the password
                     will pass through the program, and it will not acknowledge it. Making the loop go through all characters from our asciiCharacters
-                    list, and eventually giving a answer that will only have ) or ~, that is the last character from our ascii Table
+                    list, and eventually giving an answer that will only have ) or ~, that is the last character from our ascii Table
                      */
                     pswFound[i] = asciiCharacters[j];
                     bruteForce(pswFound, password, asciiCharacters, index+1);
